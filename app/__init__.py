@@ -72,19 +72,24 @@ def _configure_logging(app: Flask) -> None:
     if app.debug:
         return
 
-    log_dir = Path("logs")
-    log_dir.mkdir(exist_ok=True)
+    formatter = logging.Formatter(
+        "[%(asctime)s] %(levelname)s in %(module)s: %(message)s"
+    )
 
-    handler = RotatingFileHandler(
-        log_dir / "app.log",
-        maxBytes=10 * 1024 * 1024,  # 10 MB
-        backupCount=5,
-    )
-    handler.setFormatter(
-        logging.Formatter(
-            "[%(asctime)s] %(levelname)s in %(module)s: %(message)s"
+    # Try to write logs to a rotating file; fall back to stdout (e.g. on
+    # read-only filesystems such as Vercel serverless functions).
+    try:
+        log_dir = Path("logs")
+        log_dir.mkdir(exist_ok=True)
+        handler: logging.Handler = RotatingFileHandler(
+            log_dir / "app.log",
+            maxBytes=10 * 1024 * 1024,  # 10 MB
+            backupCount=5,
         )
-    )
+    except OSError:
+        handler = logging.StreamHandler()
+
+    handler.setFormatter(formatter)
     handler.setLevel(logging.INFO)
     app.logger.addHandler(handler)
     app.logger.setLevel(logging.INFO)
