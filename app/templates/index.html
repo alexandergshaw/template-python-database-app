@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Home – Portfolio{% endblock %}
+{% block description %}Welcome to my portfolio.{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>Hello, World! 👋</h1>
+  <p class="hero__subtitle">
+    This is your blank-slate Flask + Supabase portfolio. Start building!
+  </p>
+  <a href="{{ url_for('api.status') }}" class="btn">Check API Status</a>
+</section>
+{% endblock %}
