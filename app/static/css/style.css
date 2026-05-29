@@ -1,0 +1,176 @@
+/* ---------------------------------------------------------------
+   CSS custom properties (design tokens)
+   --------------------------------------------------------------- */
+:root {
+  --color-bg: #0f0f0f;
+  --color-surface: #1a1a1a;
+  --color-border: #2e2e2e;
+  --color-text: #e8e8e8;
+  --color-muted: #888;
+  --color-accent: #6c63ff;
+  --color-accent-hover: #574fd6;
+
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+
+  --radius: 8px;
+  --transition: 150ms ease;
+}
+
+/* ---------------------------------------------------------------
+   Reset & base
+   --------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------------------------------------------------------------
+   Layout
+   --------------------------------------------------------------- */
+header {
+  border-bottom: 1px solid var(--color-border);
+  padding: 1rem 2rem;
+}
+
+nav {
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+.nav-brand {
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--color-text);
+}
+
+main {
+  flex: 1;
+  max-width: 1100px;
+  margin-inline: auto;
+  padding: 3rem 2rem;
+  width: 100%;
+}
+
+footer {
+  border-top: 1px solid var(--color-border);
+  padding: 1rem 2rem;
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+/* ---------------------------------------------------------------
+   Hero section
+   --------------------------------------------------------------- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding-block: 4rem;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.hero__subtitle {
+  font-size: 1.125rem;
+  color: var(--color-muted);
+  max-width: 55ch;
+}
+
+/* ---------------------------------------------------------------
+   Button
+   --------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-accent);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 0.625rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  transition: background-color var(--transition);
+}
+
+.btn:hover {
+  background-color: var(--color-accent-hover);
+  color: #fff;
+}
+
+/* ---------------------------------------------------------------
+   Flash messages
+   --------------------------------------------------------------- */
+.flash-messages {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.flash {
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  margin-bottom: 0.5rem;
+  font-size: 0.9375rem;
+}
+
+.flash--success { background: #1a3c2a; color: #6ee7a0; }
+.flash--error   { background: #3c1a1a; color: #f87171; }
+.flash--info    { background: #1a2e3c; color: #7dd3fc; }
+.flash--warning { background: #3c2e1a; color: #fbbf24; }
+
+/* ---------------------------------------------------------------
+   Error pages
+   --------------------------------------------------------------- */
+.error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-block: 6rem;
+  gap: 1rem;
+}
+
+.error-page h1 {
+  font-size: 5rem;
+  font-weight: 900;
+  color: var(--color-accent);
+}
